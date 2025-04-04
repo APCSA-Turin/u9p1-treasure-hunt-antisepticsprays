@@ -7,9 +7,9 @@ public class Grid{
     public int size;
     
     public Grid(int size) { //initialize and create a grid with all DOT objects
-        grid = new Sprite[size][size];
-        this.size = size;
-        //row of the grid
+        grid = new Sprite[size][size]; // grid created with a given size
+        this.size = size; 
+        //initializes each and every column and grid as a Dot object
         for (int row = 0; row < size; row++) {
             //column of the grid
             for (int column = 0; column < size; column++) {
@@ -23,7 +23,9 @@ public class Grid{
     public int getSize(){return size;}
     public Sprite getSprite(int y, int x){return grid[y][x];}
 
+    // places a sprite at a new spot in a grid
     public void placeSprite(Sprite s){ //place sprite in new spot
+        //row position is inverted
         grid[(size - 1) - s.getY()][s.getX()] = s;
     }
 
@@ -32,25 +34,27 @@ public class Grid{
         Dot trail = new Dot(0, 0);
         placeSprite(s);
     
-        // y-axis 
+        // y-axis is updated based off direction
         if (direction.equals("w")) {
             trail.setY(s.getY() - 1);
         } else if (direction.equals("s")) {
             trail.setY(s.getY() + 1);
         } else {
+            // no movement
             trail.setY(s.getY());
         }
     
-        // x-axis
+        // x-axis is updated based off direction
         if (direction.equals("a")) {
             trail.setX(s.getX() + 1);
         } else if (direction.equals("d")) {
             trail.setX(s.getX() - 1);
         } else {
+            // no movement
             trail.setX(s.getX());
         }
     
-        // places dot object here
+        // places dot object here at the old position
         placeSprite(trail);
     }
 
