@@ -10,6 +10,8 @@ public class Game{
     private int size; 
 
     public Game(int size){ //the constructor should call initialize() and play()
+        initialize();
+        play();
     }
 
     public static void clearScreen() { //do not modify
@@ -30,9 +32,9 @@ public class Game{
 
     public void play(){ //write your game logic here
         Scanner scanner = new Scanner(System.in);
+        boolean playAgain = true;
 
-
-        while(true){
+        while(playAgain){
             try {
                 Thread.sleep(100); // Wait for 1/10 seconds
             } catch (InterruptedException e) {
@@ -42,8 +44,6 @@ public class Game{
 
      
             }
-            
-     
     }
 
     public void initialize(){

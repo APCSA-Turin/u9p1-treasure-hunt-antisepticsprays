@@ -56,24 +56,22 @@ public class Grid{
 
     // game over screen
     public void display() { //print out the current grid to the screen 
-        String displayedGrid = "";
-        for (int row = 0; row < size; row++) {
-            for (int column = 0; column < size; column++) {
-                if (grid[row][column] instanceof Dot) {
-                    displayedGrid += "⬜";
-                }if (grid[row][column] instanceof Player) {
-                    displayedGrid += "🦄";
-                }if (grid[row][column] instanceof Enemy) {
-                    displayedGrid += "🦂";
-                }if (grid[row][column] instanceof Treasure) {
-                    displayedGrid += "🌈";
-                }if (grid[row][column] instanceof Trophy) {
-                    displayedGrid += "🏆";
+        for(int row = 0; row < grid.length; row++){
+            for(int column = 0; column < grid[0].length; column++){
+                if(grid[row][column] instanceof Dot){
+                    System.out.print("⬜");
+                } else if(grid[row][column] instanceof Player){
+                    System.out.print("🦄");
+                } else if (grid[row][column] instanceof Enemy){
+                    System.out.print("🦂");
+                }else if(grid[row][column] instanceof Treasure && !(grid[row][column] instanceof Trophy)){
+                    System.out.print("🌈");
+                } else if(grid[row][column] instanceof Trophy){
+                    System.out.print("🏆");
                 }
             }
-            displayedGrid+= "\n";
+            System.out.println();
         }
-        System.out.println(displayedGrid);
     }
     
     // winning screen
@@ -83,6 +81,8 @@ public class Grid{
             for (int column = 0; column < grid[0].length; column++) {
                 if (grid[row][column] instanceof Dot) {
                     gameOverGrid += "🦂";
+                }else if (grid[row][column] instanceof Player) {
+                    gameOverGrid += "🦄";
                 }
             }
             gameOverGrid += "\n";
@@ -97,6 +97,8 @@ public class Grid{
             for (int column = 0; column < grid[0].length; column++) {
                 if (grid[row][column] instanceof Dot) {
                     winningGrid += "🌈";
+                }else if (grid[row][column] instanceof Player) {
+                    winningGrid += "🦄";
                 }
             }
             winningGrid += "\n";
